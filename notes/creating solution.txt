@@ -7,3 +7,13 @@
 -- npm install body-parser --save
 5. set the start command
 -- "start" : "nodemon server.js" 
+
+
+var bodyParser = require('body-parser');
+// var employeeApi = require('./api/employee.api');
+// app.use(bodyParser.urlencoded({ extended: false }))
+
+// // parse application/json
+// app.use(bodyParser.json())
+
+// employeeApi(app);
