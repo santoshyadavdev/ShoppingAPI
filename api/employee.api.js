@@ -1,26 +1,26 @@
 var empService = require('../service/employee.service');
 
+var employeeApi = function (app) {
 
-var employeeApi = function(app) {
-    app.get('/employee', function(req, res) {
-        var employee = { id: 1, name: 'Test' };
-        console.log(empService);
-        var employeeService = new empService();
-        employeeService.addEmployee(employee);
-        console.log(employeeService);
-        var result = employeeService.getEmployees();
-        res.send(result);
-    })
+    var empList = [{
+        id: 1,
+        name: 'test',
+        address: 'pune'
+    }, {
+        id: 2,
+        name: 'test1',
+        address: 'mumbai'
+    }, {
+        id: 3,
+        name: 'test2',
+        address: 'pune'
+    }];
 
-    app.get('/employee/:id', function(req, res) {
-        console.log(req.params.id);
-        res.send(req.params.id)
-    })
 
-    app.post('/employee', function(req, res) {
-        res.status(403).send('The user is not authenticated');
-        // res.send(req.body);
+    app.get('/employee', function (req, res) {
+        res.send(empList);
     });
+
 }
 
 module.exports = employeeApi;
