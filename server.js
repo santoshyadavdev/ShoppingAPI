@@ -17,6 +17,7 @@ app.use(bodyParser.json())
 
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers','token,Content-Type,Accept');
     next();
     //  res.status(401).send('this is invalid request');
 })
@@ -28,15 +29,10 @@ var url = 'mongodb://localhost:27017/ShppoingAppDB';
 MongoClient.connect(url, function (err, db) {
     console.log("Connected correctly to server");
 
-    app.post('/employee', (req, res) => {
-        var employee = { name: 'test', age: 23, salary: 34000 }
-        db.collection('Employee').insert(employee, (err, data) => {
-            res.send(data);
-        })
-
-    });
+    empAPI(app, db);
+    
 });
-empAPI(app);
+
 productAPI(app);
 
 app.listen(3000, function () {
