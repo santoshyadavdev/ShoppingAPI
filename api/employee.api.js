@@ -1,34 +1,25 @@
 var empService = require('../service/employee.service');
 
-var employeeApi = function (app, db) {
-
-    app.get('/employee', function (req, res) {
-        db.collection('Employee').find().toArray(function (err, data) {
+var employeeApi = function(app, db) {
+    app.get('/employee', function(req, res) {
+        db.collection('employee').find().toArray(function(err, data) {
             res.send(data);
         });
-    }); //select * from Employee
+    }); //select * from product
 
-    app.post('/employee', (req, res) => {
-        db.collection('Employee').insert(req.body, (err, data) => {
-            console.log(data.insertedCount);
+    app.get('/employee/:id', (req, res) => {
+        var id = parseInt(req.params.id);
+        db.collection('employee').find({ id: id }).toArray(function(err, data) {
             res.send(data);
-        })
-
+        }); //select * from product where id= 'id'
     });
 
-    // var empList = [{
-    //     id: 1,
-    //     name: 'test',
-    //     address: 'pune'
-    // }, {
-    //     id: 2,
-    //     name: 'test1',
-    //     address: 'mumbai'
-    // }, {
-    //     id: 3,
-    //     name: 'test2',
-    //     address: 'pune'
-    // }];
+    app.post('/employee', (req, res) => {
+        db.collection('employee').insert(req.body, (err, data) => {
+                console.log(data.insertedCount);
+                res.send(data);
+            }) // insert into employee
+    });
 
 
 }
