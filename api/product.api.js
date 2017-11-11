@@ -19,6 +19,20 @@ var productApi = function(app, db) {
             }) // insert into employee
     });
 
+
+    app.put('/product', (req, res) => {
+        db.collection('product').updateOne({ id: req.body.id }, {
+                $set: {
+                    name: req.body.name,
+                    price: req.body.price,
+                    imageUrl: req.body.imageUrl
+                },
+            }, (err, data) => {
+                res.send(data);
+            }) // update product set where productid='id'
+    });
+
+
     // app.put('/product', (req, res) => {
 
     // });
