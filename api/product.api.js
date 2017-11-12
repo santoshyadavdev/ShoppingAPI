@@ -6,6 +6,7 @@ var productApi = function(app, db) {
     }); //select * from product
 
     //for server side pagination
+    //http://localhost:3000/product/2&2
     app.get('/product/:offset&:size', function(req, res) {
         console.log(req.params);
         var offset = parseInt(req.params.offset);
