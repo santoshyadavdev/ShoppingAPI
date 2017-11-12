@@ -7,9 +7,9 @@ var productApi = function(app, db) {
 
     app.get('/product/:id', (req, res) => {
         var id = parseInt(req.params.id);
-        db.collection('product').find({ id: id }).toArray(function(err, data) {
+        db.collection('product').findOne({ id: id }, (err, data) => {
             res.send(data);
-        }); //select * from product where id= 'id'
+        })
     });
 
     app.post('/product', (req, res) => {

@@ -18,6 +18,7 @@ app.use(bodyParser.json())
 app.use(function(req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'token,Content-Type,Accept');
+    res.setHeader('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE');
     next();
     //  res.status(401).send('this is invalid request');
 })
