@@ -5,6 +5,18 @@ var productApi = function(app, db) {
         });
     }); //select * from product
 
+    //for server side pagination
+    app.get('/product/:offset&:size', function(req, res) {
+        console.log(req.params);
+        var offset = parseInt(req.params.offset);
+        var size = parseInt(req.params.size);
+
+        db.collection('product').find().skip(offset).limit(size).toArray(function(err, data) {
+            res.send(data);
+        });
+    }); //select * from product skip = 'offset' and size  = 'size'
+
+
     app.get('/product/:id', (req, res) => {
         var id = parseInt(req.params.id);
         db.collection('product').findOne({ id: id }, (err, data) => {
